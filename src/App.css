@@ -1,0 +1,54 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+
+.container {
+  z-index: 1;
+  width:1200px;
+}
+
+.nav {
+  padding: 40px 16px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+}
+
+.nav-backdrop {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.24);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  width: 100%;
+  height: 100%;
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: center;
+  gap:48px;
+}
+
+.gummy-bear {
+  position: absolute;
+  top:0px;
+  left:0px;
+  background-image: url('gummy_boar.png');
+  background-repeat: no-repeat;
+  height: 300px;
+  width: 400px;
+  background-size: contain;
+}
+
+a{
+  color:#ffffff;
+}
+
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:focus { text-decoration: none; }
+a:hover, a:active { text-decoration: none; }
