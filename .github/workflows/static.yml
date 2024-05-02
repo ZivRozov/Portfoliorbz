@@ -35,6 +35,8 @@ jobs:
         with:
           node-version: 20
           cache: "pnpm" # Use 'pnpm' instead of 'npm'
+      - name: install pnpm
+        run: npm i -g pnpm
       - name: Install dependencies
         run: pnpm install # Use 'pnpm install' instead of 'npm ci'
       - name: Build
