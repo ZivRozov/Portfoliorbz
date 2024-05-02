@@ -37,7 +37,7 @@
   position: absolute;
   top:0px;
   left:0px;
-  background-image: url('gummy_boar.png');
+  background-image: url('./gummy_boar.png');
   background-repeat: no-repeat;
   height: 300px;
   width: 400px;
