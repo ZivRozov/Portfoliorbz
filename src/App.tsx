@@ -5,16 +5,19 @@ import './App.css'
 const app = new Application();
 
 function createStar(respawn=true) {
-  const ampX = window.innerWidth;
+  const ampX = 6000;
   const ampY = 3000;
   for(let i=0;i<6;i++) {
-    const rndX =Math.random()*ampY-ampY*0.5;
+    const rndX =Math.random()*ampX-ampX*0.5;
     const rndY = respawn?window.innerHeight*1.05:Math.random()*ampY-ampY*0.5;
     const rndScale = Math.random()*1.4+0.2;
     const rndTime = Math.random()*50000+100000;
+    const alphaDecider = Math.random();
+    const rndAlpha = alphaDecider>0.8?Math.random()*0.4+0.2:1;
     const circle = new Graphics();
     circle.circle(rndX,rndY,rndScale);
     circle.fill({color:0xffffff});
+    circle.alpha=rndAlpha;
 
     const tween = new TWEEN.Tween(circle.position, false).to({x:0, y:rndY-4000}, rndTime).onComplete(()=>{
       circle.destroy();
