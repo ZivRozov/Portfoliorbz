@@ -30,6 +30,8 @@ class Star extends Graphics {
   this.alpha=rndAlpha;
 
   app.stage.addChild(this);
+
+  window.addEventListener('pointermove',mousePos);
   }
 }
 function createStar(respawn=true) {
@@ -41,36 +43,46 @@ function createStar(respawn=true) {
     const star = new Star(rndX, rndY);
     stars.push(star);
   }
-
-
-  if(!respawn) return;
-
-  setTimeout(() => {
-    createStar();
-  }, 640);
 }
 
+let tween;
 
 function mousePos(e) {
-  const normalizedX = e.x/window.innerWidth - 0.5;
-  const normalizedY = e.y/window.innerHeight - 0.5;
-  mousePosObj.x = normalizedX;
-  mousePosObj.y = normalizedY;
-
+  const windowCenterX = window.innerWidth * 0.5;
+  const windowCenterY = window.innerHeight * 0.5;
+  const vectorX = e.x - windowCenterX;
+  const vectorY = e.y - windowCenterY;
+  const vectorLength = Math.sqrt ( vectorX * vectorX + vectorY * vectorY);
+  if(tween) {
+    tween.stop();
+  }
+  //mousePosObj.x = vectorX / vectorLength;
+  //mousePosObj.y = vectorY / vectorLength;
+  tween = new TWEEN.Tween(mousePosObj).duration(100).to({x:vectorX / vectorLength, y:vectorY/ vectorLength}).easing(TWEEN.Easing.Quadratic.InOut).start();
 }
 
+let starSpawnCounter = 0;
+const spawnCounterAmount = 100;
 function animateStars() {
+  tween?.update();
+  starSpawnCounter++;
+  if(starSpawnCounter > spawnCounterAmount) {
+    starSpawnCounter = 0;
+    //createStar();
+  }
   toRemove.forEach(star=>{
     star.destroy();
   })
   for(let i=0;i<stars.length;i++) {
-    const directionY = mousePosObj.y < 0 ? -1:1;
-    const directionX = mousePosObj.x < 0 ? 1:-1;
-    stars[i].y+=stars[i].speed*directionY;
-    stars[i].x-=stars[i].speed*directionX;
-    if(stars[i].y<-2000) {  
-      const star = stars.splice(i,1);
-      toRemove.push(star[0]);
+    const star = stars[i];
+    const directionY = mousePosObj.x;
+    const directionX = mousePosObj.y;
+
+    star.y+=star.speed*directionX;
+    star.x+=star.speed*directionY;
+    if(star.y<-2000) {  
+      const starToRemove = stars.splice(i,1);
+      toRemove.push(starToRemove[0]);
     }
   }
 }
@@ -80,11 +92,9 @@ function App() {
   const canvas = useRef();
   useEffect(()=>{
     if(pixiRendered) return;
-    window.addEventListener('pointermove',mousePos);
     pixiRendered = true;
 
     app.init({ width: window.innerWidth, height: window.innerHeight, resizeTo:window, canvas:canvas.current }).then(()=>{
-      
       createStar();
       for(let i=0;i<240;i++) {
         createStar(false);
@@ -107,6 +117,13 @@ function App() {
       </div>
     </nav>
     <div id='hero'>
+      <div className='main-title'>
+        <div className='title-div'>
+          <h3 className='pill pinkurple font-alt'>ORR BENZION * PRODUCT * DESIGNER</h3>
+          <h1 className='main-title-font font-main'>A DIFFERENT KIND OF DESIGNER</h1>
+        </div>
+        <button className='hero-unmute-button'>UNMUTE</button>
+      </div>
       <canvas ref={canvas} id='heroCanvas'></canvas>
     </div>
     </>

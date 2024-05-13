@@ -3,8 +3,6 @@
   text-align: center;
 }
 
-
-
 .container {
   z-index: 1;
   width:1200px;
@@ -53,6 +51,9 @@ a{
 #hero {
   height: 100vh;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #heroCanvas {
@@ -62,6 +63,37 @@ a{
   top:0;
   left:0;
   z-index: -1;
+}
+
+.main-title {
+  container-type:inline-size;
+  color:white;
+  width: 80%;
+  max-width: 1400px;
+}
+
+.title-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:8px;
+  margin-bottom: 5%;
+}
+
+.main-title-font {
+  font-size: 10cqw;
+  -webkit-text-stroke: 1px;
+  -webkit-text-fill-color: transparent;
+  -webkit-stroke-color:white;
+}
+
+.hero-unmute-button {
+  background-color: transparent;
+  color: white;
+  border: 1px white solid;
+  border-radius: 100px;
+  padding: 16px 16px 16px 16px;
 }
 
 a:visited { text-decoration: none; }

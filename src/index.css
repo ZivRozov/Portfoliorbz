@@ -45,3 +45,23 @@ a {
   text-decoration: none;
 }
 
+.pill-text {
+  font-size: 14px;
+}
+
+.pill {
+  border:none;
+  border-radius: 100px;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+.pinkurple {
+  background: rgb(208,109,255);
+  background: linear-gradient(90deg, rgba(208,109,255,1) 0%, rgba(255,85,238,1) 100%);
+}
+
+h1, h2, h3, h4, h5 {
+  margin:0;
+}
+
