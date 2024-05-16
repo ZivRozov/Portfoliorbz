@@ -5,7 +5,8 @@
 
 .container {
   z-index: 1;
-  width:1200px;
+  width: 100%;
+  max-width:1200px;
 }
 
 .nav {
@@ -16,6 +17,13 @@
   align-items: center;
   width: 100%;
   position:fixed;
+}
+
+.nav-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:0% 5%;
 }
 
 .nav-backdrop {

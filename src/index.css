@@ -8,6 +8,7 @@
 
 .font-main {
   font-family: "Ubuntu", sans-serif;
+  font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
 }
@@ -17,6 +18,18 @@
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
+}
+
+.primary-cta {
+  background-color: rgba(0, 0, 0, 0.7);
+  border:none;
+  border-radius: 8px;
+  color:white;
+  padding: 20px 16px;
+}
+
+.cta-border-white {
+  border: white solid 1px;
 }
 
 .font-alt-r {
@@ -31,6 +44,13 @@
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
+}
+
+.cta-with-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:6px;
 }
 
 body {
