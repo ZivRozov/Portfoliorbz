@@ -94,6 +94,7 @@ a{
   -webkit-text-stroke: 1px;
   -webkit-text-fill-color: transparent;
   -webkit-stroke-color:white;
+  opacity: 0;
 }
 
 .hero-unmute-button {

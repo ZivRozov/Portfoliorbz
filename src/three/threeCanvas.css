@@ -1,0 +1,11 @@
+#magic {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    top:2%;
+    left:-2%;
+    z-index: 0;
+    overflow: hidden;
+    transform: scale(1);
+  }
+

@@ -3,6 +3,7 @@ import { Application, Container, Graphics, Sprite, Texture, Ticker } from 'pixi.
 import * as TWEEN from '@tweenjs/tween.js'
 import './App.css'
 import { UilFileAlt } from '@iconscout/react-unicons';
+import { ThreeCanvas } from './three/threeCanvas';
 
 const app = new Application();
 
@@ -103,11 +104,11 @@ function animateStars({deltaTime}) {
 }
 
 function App() {
-  let pixiRendered = false;
+  const rendered = useRef(false);
   const canvas = useRef();
   useEffect(()=>{
-    if(pixiRendered) return;
-    pixiRendered = true;
+    if(rendered.current) return;
+    rendered.current = true;
 
     app.init({ width: window.innerWidth, height: window.innerHeight, resizeTo:window, canvas:canvas.current }).then(()=>{
       for(let i=0;i<1200;i++) {
@@ -146,9 +147,11 @@ function App() {
         <button className='hero-unmute-button'>UNMUTE</button>
       </div>
       <canvas ref={canvas} id='heroCanvas'></canvas>
+      <ThreeCanvas/>
     </div>
     </>
   )
 }
 
 export default App
+    
