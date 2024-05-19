@@ -11,7 +11,7 @@ export default function futureIsNow() {
         var typo = null;
         const loader = new FontLoader(manager);
         const font = loader.load(
-          'public/ubuntu_three.json',
+          './ubuntu_three.json',
           function (font) {
             typo = font;
           },
