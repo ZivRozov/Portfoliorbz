@@ -17,6 +17,13 @@ const mousePosObj = {
   y:1
 };
 
+const desiredPosObj = {
+  x:1,
+  y:1
+}
+
+const STAR_FRAME_FRACTION = 30;
+
 class Star extends Sprite {
   public speed = 0;
   constructor(x:number, y:number) {
@@ -55,23 +62,46 @@ function createStar(x?:number, y?:number) {
   }
 }
 
-let tween;
+let tweenProgress=0;
 
 function mousePos(e) {
+  tweenProgress = 0;
   const windowCenterX = window.innerWidth * 0.5;
   const windowCenterY = window.innerHeight * 0.5;
   const vectorX = e.x - windowCenterX;
   const vectorY = e.y - windowCenterY;
   const vectorLength = Math.sqrt ( vectorX * vectorX + vectorY * vectorY);
-  if(tween) {
-    tween.stop();
-  }
-  tween = new TWEEN.Tween(mousePosObj).duration(100).to({x:vectorX / vectorLength, y:vectorY/ vectorLength}).easing(TWEEN.Easing.Quadratic.InOut).start();
+
+  desiredPosObj.x = vectorX / vectorLength;
+  desiredPosObj.y = vectorY / vectorLength;
+}
+
+function quadraticOut(t) {
+  return t * (2 - t);
+}
+
+function updateStarMovementObject() {
+  if (tweenProgress < 1) {
+    // Increase progress
+    tweenProgress += 1 / STAR_FRAME_FRACTION;
+
+    // Calculate eased progress
+    const easedProgress = quadraticOut(tweenProgress);
+
+  const diffX = (desiredPosObj.x - mousePosObj.x) * easedProgress;
+  const diffY = (desiredPosObj.y - mousePosObj.y) * easedProgress;
+
+  mousePosObj.x += diffX;
+  mousePosObj.y += diffY;
+}  else {
+  mousePosObj.x = desiredPosObj.x;
+  mousePosObj.y = desiredPosObj.y;
+}
 }
 
 function animateStars({deltaTime}) {
 
-  tween.update();
+  updateStarMovementObject();
 
   toRemove.forEach(index=>{
     const star = stars.splice(index,1);
@@ -110,12 +140,11 @@ function App() {
     if(rendered.current) return;
     rendered.current = true;
 
-    app.init({ width: window.innerWidth, height: window.innerHeight, resizeTo:window, canvas:canvas.current }).then(()=>{
+    app.init({ width: window.innerWidth, height: window.innerHeight, resizeTo:window, canvas:canvas.current, backgroundAlpha: 0 }).then(()=>{
       for(let i=0;i<1200;i++) {
         createStar();
       }
 
-      tween = new TWEEN.Tween(mousePosObj).duration(100).to({x:1, y:1}).easing(TWEEN.Easing.Quadratic.InOut).start();
       window.addEventListener('pointermove',mousePos);
       Ticker.shared.add(animateStars);
 
@@ -129,7 +158,7 @@ function App() {
       <div className='container'>
         <div className='nav-flex'>
           <img width={'66px'} height={'66px'} src="./logo_white_static.png"/>
-        <ul className='nav-inner font-main'>
+        <ul className='nav-inner font-main font-size-14'>
           <li><a href=''>ABOUT</a></li>
           <li><a href=''>PROJECTS</a></li>
           <li><a href=''>CONTACT</a></li>
@@ -141,7 +170,7 @@ function App() {
     <div id='hero'>
       <div className='main-title'>
         <div className='title-div'>
-          <h3 className='pill pinkurple font-alt'>ORR BENZION * PRODUCT * DESIGNER</h3>
+          <h3 className='pill font-size-14 pinkurple font-alt'>ORR BENZION * PRODUCT * DESIGNER</h3>
           <h1 className='main-title-font font-main'>A DIFFERENT KIND OF DESIGNER</h1>
         </div>
         <button className='hero-unmute-button'>UNMUTE</button>

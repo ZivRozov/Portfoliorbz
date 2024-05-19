@@ -49,7 +49,7 @@ export default function futureIsNow() {
             amount: 1100,
             particleSize: 1,
             particleColor: 0xffffff,
-            textSize: 6.8,
+            textSize: 7,
             area: 25,
             ease: 0.05,
           };
