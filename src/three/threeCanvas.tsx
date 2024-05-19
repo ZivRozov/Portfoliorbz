@@ -13,12 +13,12 @@ export const ThreeCanvas = () => {
     });
     resize_canvas();
   }, []);
-  return <div id="magic"></div>;
+  return <div style={{position:'absolute', overflow:'hidden', width:'100%', height:'100%'}}><div id="magic"></div></div>;
 };
 
 function resize_canvas() {
   const ratio = window.innerWidth/window.innerHeight;
   const scale = Math.min(1.2, ratio*1);
-  document.getElementById('magic').style.transform = `translate(0%, 0%) scale(${scale})`
+  document.getElementById('magic').style.transform = `scale(${scale})`
 }
 
