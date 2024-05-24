@@ -126,6 +126,10 @@ a {
   font-size: 14px;
 }
 
+.gap-120 {
+  height:120px;
+}
+
 .no-bold {
   font-weight:400;
 }

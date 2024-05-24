@@ -10,20 +10,20 @@
 }
 
 .nav {
-  padding: 40px 16px;
+  padding: 16px 40px;
   display: flex;
   justify-content: center;
   position: relative;
   align-items: center;
   width: 100%;
   position:fixed;
+  z-index: 999;
 }
 
 .nav-flex {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding:0% 5%;
 }
 
 .nav-backdrop {
@@ -79,6 +79,13 @@ a{
   color:white;
   width: 80%;
   max-width: 1400px;
+}
+
+.vert-div {
+  width:1px;
+  transform: scaleX(0.5);
+  height:216px;
+  background-color: white;
 }
 
 .title-div {
