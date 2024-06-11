@@ -130,6 +130,18 @@ a {
   height:120px;
 }
 
+.flex-gap-24 {
+  gap:24px;
+}
+
+.flex-gap-32 {
+  gap:32px;
+}
+
+.pr-48 {
+  padding: 0px 48px;
+}
+
 .no-bold {
   font-weight:400;
 }
@@ -152,6 +164,14 @@ a {
 
 .less-muted-color {
   color:#5a5a5a;
+}
+
+.w-5-color {
+  background-color:#202020;
+}
+
+.z-1 {
+  z-index: 1;
 }
 
 .pill {

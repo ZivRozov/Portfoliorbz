@@ -17,7 +17,7 @@ function App() {
       <nav className="nav">
         <div className="gummy-bear"></div>
         <div className="nav-backdrop"></div>
-        <div className="container">
+        <div className="container z-1">
           <div className="nav-flex">
             <img width={"66px"} height={"66px"} src="./logo_white_static.png" />
             <ul className="nav-inner font-main font-size-14">

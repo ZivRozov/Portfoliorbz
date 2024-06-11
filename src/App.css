@@ -4,9 +4,14 @@
 }
 
 .container {
-  z-index: 1;
+  margin:0 auto;
+  box-sizing: border-box;
   width: 100%;
   max-width:1200px;
+}
+
+.z-1 {
+  z-index:1;
 }
 
 .nav {
